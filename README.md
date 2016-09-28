@@ -18,7 +18,7 @@ vec3.h | You guessed it correctly! Another vector algebra library.
 
 A schematic representation of a typical simulation application:
 
-![Sumatra Diagram](https://github.com/macoun/sumatra/raw/master/res/diagram.pdf)
+![Sumatra Diagram](https://github.com/macoun/sumatra/raw/master/res/diagram.png)
 
 You can consider the SCG module as a helper or wrapper to `smtr_add_force()`. It also contains the *update functions* to the supported forces: *stretching, bending, torsion*, and *nonbonded*. It is seperated from the core Sumatra engine and can be replaced easily by your own force implementations.
 
