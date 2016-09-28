@@ -1,4 +1,4 @@
-Sumatra
+#SUMATRA
 -
 A simple molecular dynamics engine driven by Langevin dynamics.
 
@@ -9,6 +9,21 @@ Sumatra is inspired by the molecular dynamic model as described in the paper:
 > Solvation Effects and Driving Forces for Protein Thermodynamic and Kinetic Cooperativity: How Adequate is Native-centric Topological Modeling?
 
 The emphasis is put on simplicity and robustness of developing a molecular dynamics simulation written in C. A full functional simulation can be expressed by a few core functions of Sumatra.
+
+## Building and Running
+
+It's not rocket science.
+
+	git clone https://github.com/macoun/sumatra.git
+	cd sumatra
+	make
+
+I've also included a demo pdb file to start right away. Run the demo simulation as follows.
+
+	./sumatra res/1cqu.pdb
+
+
+## Architecture
 
 Module | Description
 ------ | -----------
@@ -21,6 +36,8 @@ A schematic representation of a typical simulation application:
 ![Sumatra Diagram](https://github.com/macoun/sumatra/raw/master/res/diagram.png)
 
 You can consider the SCG module as a helper or wrapper to `smtr_add_force()`. It also contains the *update functions* to the supported forces: *stretching, bending, torsion*, and *nonbonded*. It is seperated from the core Sumatra engine and can be replaced easily by your own force implementations.
+
+## Example
 
 The following example shows how to setup a simluation and run it for 100k time steps at 0.5 simulation temperature.
 		
@@ -48,7 +65,7 @@ For the sake of simplicity `print_event()` will print the coordinates of the 10t
 	  vec3 *p;
 	  if (smtr_ctx->currentTimeStep % 10000 == 0)
 	  {
-	    p = smtr_ctx->particles + (long)idx;
+	    p = smtr_ctx->particles + 10;
 	    printf("%3.7f %3.3f %3.3f\n", p->x, p->y, p->z);
 	  }
 	  
@@ -56,6 +73,13 @@ For the sake of simplicity `print_event()` will print the coordinates of the 10t
 	  return 0;
 	}
 
+## What else
+
 - A random force as defined in Langevin dynamics will be added automatically if the simulation temperature is above zero. 
 
 - Initial particle velocities are given randomly during initialization.
+- This is an ongoing project and I discourage using this in productive researches.
+
+## License
+
+This version is licensed under MIT.
